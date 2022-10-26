@@ -1,0 +1,36 @@
+<div class="form-floating mb-5">
+  <label [for]="id" class="label" >
+    {{ label }}
+  </label>
+  <div class="control">
+    <input
+      [type]="type"
+      class="form-control input"
+      [id]="id"
+      [mask]="mask"
+      [placeholder]="label"
+      [formControl]="control"
+      [ngClass]="{'is-danger': showErrors() }"
+    />
+  </div>
+  <ng-container *ngIf="showErrors()">
+    <div class="help is-danger my-4 " *ngIf="control.errors?.required">
+      فیلد
+      {{ label }}
+      الزامی است.
+    </div>
+    <div class="is-danger help my-4" *ngIf="control.errors?.minlength">
+      تعداد کاراکترهای واردشده نباید کمتر از
+      {{ control.errors?.minlength.requiredLength }}
+      باشد
+    </div>
+    <div class="my-4 help is-danger" *ngIf="control.errors?.maxlength">
+      تعداد کاراکترهای واردشده نباید بیشتر از
+      {{ control.errors?.maxlength.requiredLength }}
+      باشد
+    </div>
+    <div class="my-4 help is-danger" *ngIf="control.errors?.pattern">
+      مقدار وارد شده نامعتبر است
+    </div>
+  </ng-container>
+</div>
